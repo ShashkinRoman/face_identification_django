@@ -1,0 +1,11 @@
+#button_style {
+margin: 1em 0 1em 0;
+}
+.header {
+    background-color: #337ab7;
+    color: white;
+}
+.textstyles {
+    text-align: center;
+    font-weight: bold;
+}
