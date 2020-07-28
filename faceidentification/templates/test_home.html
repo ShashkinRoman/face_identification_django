@@ -2,31 +2,31 @@
 
 <html lang="ru">
 <head>
-<title>Система распознавания лиц</title>
-<meta charset="utf-8">
-<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
-<link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/png">
-<script src="{% static 'js/bootstrap.min.js' %}"></script>
-<script src="{% static 'js/jquery.min.js' %}"></script>
-<script src="{% static 'js/script.js' %}"></script>
+    <title>Система распознавания лиц</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/png">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
 </head>
 
 <body>
-   <div class="container-fluid">
+<div class="container-fluid">
     <div class="row">
         <div class="col-sm-12 header">
             <h1 class="textstyles"><strong>Система распознавания лиц</strong></h1>
-<nav class="navbar navbar-light bg-light">
-    <a class="btn btn-default btn-lg pull-right" href="http://127.0.0.1:8000/admin" role="button">Войти</a>
-</nav>
-    </div>
+            <nav class="navbar navbar-light bg-light">
+                <a class="btn btn-default btn-lg pull-right" href={% url 'admin:index' %} role="button">Войти</a>
+            </nav>
+        </div>
     </div>
     <div class="row">
         <div class="col-sm-6">
             <h3 class="textstyles">Изображение</h3>
-            <img src="" alt="face" class="img-fluid img-thumbnail center-block" id="image">
-  </div>
+            <img src="{% static 'img/noface.png' %}" alt="face" class="img-fluid img-thumbnail center-block" id="image">
+        </div>
         <div class="col-sm-6">
             <h3 class="textstyles">Информация</h3>
             <h3>Имя: <span id="name"></span></h3>
@@ -34,19 +34,19 @@
             <h3>Доступ: <span id="access"></span></h3>
         </div>
     </div>
-{#    <div class="row">#}
-{#         <div class="col-sm-6">#}
-{#<button type="button" class="btn btn-primary btn-lg btn-block" id="allowed">Приход</button>#}
-{#        </div>#}
-{#        <div class="col-sm-6">#}
-{#<button type="button" class="btn btn-primary btn-lg btn-block" id="noAllowed">Уход</button>#}
-{#             </div>#}
-{#    </div>#}
-<div class="row">
+    {#    <div class="row">#}
+    {#         <div class="col-sm-6">#}
+    {#<button type="button" class="btn btn-primary btn-lg btn-block" id="allowed">Приход</button>#}
+    {#        </div>#}
+    {#        <div class="col-sm-6">#}
+    {#<button type="button" class="btn btn-primary btn-lg btn-block" id="noAllowed">Уход</button>#}
+    {#             </div>#}
+    {#    </div>#}
+    <div class="row">
         <div class="col-sm-12 header" id="margins">
-    <h4 class="textstyles">© by eror404, 2020</h4>
+            <h4 class="textstyles">© by eror404, 2020</h4>
+        </div>
     </div>
 </div>
-   </div>
 </body>
 </html>

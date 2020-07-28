@@ -41,5 +41,10 @@ async def sync_server(websocket, path):
 
 start_server = websockets.serve(sync_server, "0.0.0.0", 9000, max_size=1000000000000000, ping_interval=None)
 
-asyncio.get_event_loop().run_until_complete(start_server)
-asyncio.get_event_loop().run_forever()
+
+while True:
+    try:
+        asyncio.get_event_loop().run_until_complete(start_server)
+        asyncio.get_event_loop().run_forever()
+    except Exception:
+        print(Exception)

@@ -72,7 +72,7 @@ TEMPLATES = [
 STATIC_URL = '/static/'
 STATICFILES_DIRS = ['faceidentification/static/']
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
-MEDIA_ROOT = os.path.join(BASE_DIR, "faceidentification/static/img/")
+MEDIA_ROOT = os.path.join(BASE_DIR, "faceidentification/static/img/media")
 MEDIA_URL = '/media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

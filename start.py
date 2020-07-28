@@ -13,7 +13,7 @@ from faceidentification.models import Access_status, Info_about_face
 
 
 ws = websocket.WebSocket()
-ws.connect("ws://192.168.88.23:9000", max_size=1000000000000)
+ws.connect("ws://127.0.0.1:9000", max_size=1000000000000)
 
 
 
@@ -58,7 +58,7 @@ def formed_model_encoding():
             name_ = user.name
             known_face_names.append(name_)
             path_in_db = user.path_download
-            path_for_encoding = '/home/roman/PycharmProjects/face_identification_django/faceidentification/static/img/media/' + str(path_in_db)
+            path_for_encoding = 'faceidentification/static/img/media/' + str(path_in_db)
             image = face_recognition.load_image_file(path_for_encoding)
             image_face_encoding = face_recognition.face_encodings(image)[0]
             known_face_encodings.append(image_face_encoding)
@@ -121,7 +121,7 @@ path_image_dict = {}
 def path_image_func():
     query = Access_status.objects.all()
     for i in query:
-        path_image_dict[i.name] = 'faceidentification/static/img/' + str(i.path_download)
+        path_image_dict[i.name] = 'static/img/media/' + str(i.path_download)
 
 path_image_func()
 
@@ -152,25 +152,25 @@ def ws_json(name, answer, path_screen, path_image, date_for_path):
 
 def show_frame(face_locations, name_, frame_):
     face_names = [name_]
-    for (top, right, bottom, left), name in zip(face_locations, face_names):
-        # Scale back up face locations since the frame we detected in was scaled to 1/4 size
-        top *= 4
-        right *= 4
-        bottom *= 4
-        left *= 4
-
-        # Draw a box around the face
-        cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
-
-        # Draw a label with a name below the face
-        cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (0, 0, 255), cv2.FILLED)
-        font = cv2.FONT_HERSHEY_DUPLEX
-        cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
-    cv2.imshow('Video', frame_)
+    # for (top, right, bottom, left), name in zip(face_locations, face_names):
+    #     # Scale back up face locations since the frame we detected in was scaled to 1/4 size
+    #     top *= 4
+    #     right *= 4
+    #     bottom *= 4
+    #     left *= 4
+    #
+    #     # Draw a box around the face
+    #     cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
+    #
+    #     # Draw a label with a name below the face
+    #     cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (0, 0, 255), cv2.FILLED)
+    #     font = cv2.FONT_HERSHEY_DUPLEX
+    #     cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
+    # cv2.imshow('Video', frame_)
     date_ = datetime.now()
     date_for_path = date_.strftime("%d/%m/%y %H:%M:%S")
     path = r'/static/img/media/screenshots/{}_{}.png'.format(name_, date_for_path)
-    cv2.imwrite('static/img/media/screenshots/{}_{}.png'.format(face_names, date_for_path), frame_)
+    # cv2.imwrite('static/img/media/screenshots/{}_{}.png'.format(face_names, date_for_path), frame_)
     return path, date_, date_for_path
 
 count_white = 0
@@ -275,23 +275,23 @@ while True:
     process_this_frame = not process_this_frame
 
     # Display the results
-    for (top, right, bottom, left), name in zip(face_locations, face_names):
-        # Scale back up face locations since the frame we detected in was scaled to 1/4 size
-        top *= 4
-        right *= 4
-        bottom *= 4
-        left *= 4
-
-        # Draw a box around the face
-        cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
-
-        # Draw a label with a name below the face
-        cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (0, 0, 255), cv2.FILLED)
-        font = cv2.FONT_HERSHEY_DUPLEX
-        cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
-
-    # Display the resulting image
-    cv2.imshow('Video', frame)
+    # for (top, right, bottom, left), name in zip(face_locations, face_names):
+    #     # Scale back up face locations since the frame we detected in was scaled to 1/4 size
+    #     top *= 4
+    #     right *= 4
+    #     bottom *= 4
+    #     left *= 4
+    #
+    #     # Draw a box around the face
+    #     cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
+    #
+    #     # Draw a label with a name below the face
+    #     cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (0, 0, 255), cv2.FILLED)
+    #     font = cv2.FONT_HERSHEY_DUPLEX
+    #     cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
+    #
+    # # Display the resulting image
+    # cv2.imshow('Video', frame)
 
     # Hit 'q' on the keyboard to quit!
     if cv2.waitKey(1) & 0xFF == ord('q'):
